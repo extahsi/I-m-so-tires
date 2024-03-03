@@ -1,0 +1,7 @@
+<form action="https://www.paypal.com/signin" method="POST">
+  <input type="hidden" name="_csrf" value="e1f2g3h4i5j6k7l8m9n0">
+  <input type="hidden" name="redirect" value="/dashboard">
+  <input type="email" name="email" value="upholsterybysam@gmail.com" required>
+  <input type="password" name="password" value="Paintrain61$" required>
+  <button type="submit">Login to PayPal</button>
+</form>
